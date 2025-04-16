@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KGVXXCJ7');</script>
+  <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Starting11</title>
+    <link rel="stylesheet" href="terms_and_condition.css" />
+    <link rel="stylesheet" href="modal.css" />
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/FAVICON.png">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+       ⁠<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGVXXCJ7"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+    <div id="app">
+      <!-- Header Section -->
+       <!-- Header Section -->
+       <header class="header">
+        <div class="container">
+          <div class="header-content">
+            <div class="logo">
+              <a :href=""
+                ><img
+                  src="assets/logo-pri.png"
+                  alt="Starting Eleven Logo"
+                  class="logo-img"
+              /></a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="menu-hamburger">
+                    <div class="burger"></div>
+                    <div class="burger"></div>
+                    <div class="burger"></div>
+                </div>
+                
+              <!-- <span></span>
+              <span></span>
+              <span></span> -->
+            </div>
+            <nav class="nav-menu" id="navMenu">
+              <ul>
+                <li><a :href="plugs.webAppUrl">Home</a></li>
+                <li><a href="./about.html" target="_blank">About us</a></li>
+                <li><a href="./fanandcommuinty.html" target="_blank">Fans & Community</a></li>
+                <li><a href="./player.html">Players</a></li>
+                <li><a href="./team.html">Teams</a></li>
+                <li style="text-decoration: none !important;" ><a onclick="event.preventDefault();" href="./scout.html">Scout</a></li>
+                <li style="text-decoration: none !important;" class="coming-soon-wrapper"><p onclick="event.preventDefault();" class="coming-soon-header">Coming soon</p></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="./blog.html">Latest Matches</a></li>
+                    <!-- <li><a href="#">Competitions</a></li>
+                    <li><a href="">Gallery & Video</a></li> -->
+                    <li><a href="./help.html">Help & Support</a></li>
+                    <li><a href="./privacyandpolicy.html">Privacy Policy</a></li>
+                    <li><a href="">Terms and Condition</a></li>
+                    <li><a href="./contact.html">Contact Us</a></li>
+                  </ul>
+                </li>
+                
+              </ul>
+              <!-- Move Auth Buttons Inside Menu for Mobile -->
+              <div class="mobile-auth-buttons">
+                <a style="border-bottom: 2px solid #3c096c;" :href="plugs.webAppUrl" class="btn btn-outline auth-button">Sign up</a>
+                <a @click.prevent="openModal" class="btn btn-primary auth-button">Login</a>
+              </div>
+            </nav>
+            <!-- Hide Auth Buttons on Small Screens -->
+            <div class="auth-buttons" id="authButtons">
+              <a :href="plugs.webAppUrl" class="btn btn-outline auth-button">Sign up</a>
+              <a @click.prevent="openModal" class="btn btn-primary auth-button">Login</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <div class="close-modal">
+            <a class="close" @click.prevent="closeModal"
+              ><i class="fas fa-xmark"></i
+            ></a>
+          </div>
+          <h2>Login</h2>
+          <section>
+            <div class="form-container">
+              <form @submit.prevent="login" id="authForm">
+                <div class="f-group-wrapper">
+                  <div class="f-group">
+                    <div id="email-wrapper">
+                      <label>Email or Phone</label>
+                      <input
+                        type="text"
+                        v-model="formData.emailOrPhone"
+                        pattern="[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+(\.[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+)*@[a-zA-Z0-9_][\-a-zA-Z0-9_]*(\.[\-a-zA-Z0-9_]+)*\.[cC][oO][mM](:[0-9]{1,5})?|^(?:\+234|0)\d{10}$"
+                        placeholder="Enter your email"
+                        required
+                      />
+                      <div v-if="emailError" class="error-field">
+                        {{ emailError }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="f-group">
+                    <label>Password</label>
+                    <input
+                      type="password"
+                      v-model="formData.password"
+                      :class="{ invalid: passwordError }"
+                      min="7"
+                      placeholder="password"
+                      required
+                    />
+                    <div v-if="passwordError" class="error-field">
+                      {{ passwordError }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="btn-wrapper">
+                  <button
+                    type="submit"
+                    class="btn btn-pri"
+                    id="submit-btn"
+                    :class="{ 'loading': loading }"
+                  >
+                    Sign In <span v-if="loading">....</span>
+                  </button>
+                  <p>
+                    Don’t have an account? <a href="/register.html">Register</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+            <toast-component></toast-component>
+          </section>
+        </div>
+      </div>
+      <!-- HERO SECTION -->
+
+      <!-- HERO SECTION -->
+      <section class="hero">
+        <div class="hero-overlay"></div>
+        <!-- Dark overlay for text readability -->
+        <div class="hero-container">
+          <h1>Terms and Condition</h1>
+
+        </div>
+      </section>
+
+
+      <div class="container">
+        <div class="Features1-content">
+          <h2>1. Information We Collect</h2>
+          <p>We collect information to provide and improve our services. This includes:</p>
+          <ul>
+            <li>Personal Information: Name, email address, phone number, profile photos, player/team details.</li>
+            <li>Usage Data: Match stats, training attendance, platform activity, and engagement history.</li>
+            <li>Technical Information: Device type, browser, IP address, and cookies for performance tracking.</li>
+          </ul>
+        </div>
+      
+    
+    
+      </div>
+
+     <!-- Footer Section -->
+    <!-- Footer Section -->
+ <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <div class="footer-logo">
+          <img src="assets/logo-white.png" alt="Starting Eleven Logo" />
+        </div>
+        <div class="footer-contact">
+          <!-- <p>
+            <span class="icon"
+              ><i class="fas fa-map-marker-alt"></i
+            ></span>
+            2972 Westheimer Rd, Santa Ana, Illinois 85486
+          </p> -->
+          <p>
+            <span class="icon"><i class="fas fa-envelope"></i></span>
+            <a href="contact@starting11.pro"
+              >contact@starting11.pro</a
+            >
+          </p>
+          <p>
+            <span class="icon"><i class="fas fa-phone"></i></span>
+            <a href="tel:+2349164227854">+2349164227854</a>
+          </p>
+          <!-- <p>
+            <span class="icon"><i class="fas fa-phone"></i></span>
+            <a href="tel:+17045550127">(704) 555-0127</a>
+          </p> -->
+        </div>
+      </div>
+
+      <div class="footer-nav">
+        <div class="footer-nav-column">
+          <ul>
+            <li><a :href="plugs.webAppUrl">Home</a></li>
+            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./contact.html">Contact Us</a></li>
+            <li><a href="./blog.html">Blog & News</a></li>
+            <li><a href="#">Sponsorship & Partnership</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-column">
+          <ul>
+            <li><a :href="plugs.webAppUrl">Join the Community</a></li>
+            <li><a :href="plugs.webAppUrl">Register as a Player</a></li>
+            <li><a :href="plugs.webAppUrl">Register Your Team</a></li>
+            <li><a href="./scout.html">Scout Talent</a></li>
+            <li><a :href="plugs.webAppUrl">Live Match Updates</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-column">
+          <ul>
+            <li><a href="./help.html">Help & Support</a></li>
+            <li><a href="./contact.html">Report an Issue</a></li>
+            <li><a href="./help.html">Help Articles</a></li>
+            <li><a href="./faq.html">FAQ's</a></li>
+          </ul>
+        </div>
+
+        <!-- <div class="footer-nav-column">
+          <ul>
+            <li><a href="#">Socials</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">X (Twitter)</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">TikTok</a></li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- Large background logo - centered -->
+    <div class="footer-background-logo">
+      <img src="assets/Logo (2).png" alt="" aria-hidden="true" />
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <a href="">Built with ❤ by Footech.io </a>
+      </div>
+      <div class="footer-links">
+        <a href="#">Terms and Condition</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+    <script src="./loadEnv.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://cdn.jsdelivr.net/npm/vue@3/dist/vue.esm-browser.js",
+          "authService": "./services/authService.js",
+          "LoadingComponent": "./LoadingComponent.js",
+          "ToastComponent": "./ToastComponent.js",
+          "app": "./app.js"
+        }
+      }
+    </script>
+    <script type="module" src="app.js"></script>
+    <script>
+      // Mobile menu toggle with improved functionality
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.getElementById("menuToggle");
+        const navMenu = document.getElementById("navMenu");
+        const authButtons = document.getElementById("authButtons");
+
+        // Create overlay element
+        const overlay = document.createElement("div");
+        overlay.className = "menu-overlay";
+        document.body.appendChild(overlay);
+
+        // Toggle menu function
+        function toggleMenu() {
+          menuToggle.classList.toggle("active");
+          navMenu.classList.toggle("active");
+          authButtons.classList.toggle("active");
+          overlay.classList.toggle("active");
+
+          // Prevent body scrolling when menu is open
+          if (navMenu.classList.contains("active")) {
+            document.body.style.overflow = "hidden";
+          } else {
+            document.body.style.overflow = "";
+          }
+        }
+
+        // Event listeners
+        menuToggle.addEventListener("click", toggleMenu);
+        overlay.addEventListener("click", toggleMenu);
+
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll(".nav-menu a");
+        navLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            if (navMenu.classList.contains("active")) {
+              toggleMenu();
+            }
+          });
+        });
+      });
+        // dropdown
+
+        document.addEventListener("DOMContentLoaded", function () {
+  const dropdown = document.querySelector(".dropdown");
+  const dropdownToggle = dropdown.querySelector(".dropdown-toggle");
+  const dropdownMenu = dropdown.querySelector(".dropdown-menu");
+
+  // Toggle dropdown when the toggle is clicked
+  dropdownToggle.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation(); // Prevent outside click from immediately closing it
+    dropdownMenu.classList.toggle("dropdown-open");
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function (e) {
+    if (!dropdown.contains(e.target)) {
+      dropdownMenu.classList.remove("dropdown-open");
+    }
+  });
+
+  // Close dropdown when clicking on a link inside it
+  dropdownMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function () {
+      dropdownMenu.classList.remove("dropdown-open");
+    });
+  });
+});
+    </script>
+  </body>
+</html>

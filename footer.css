@@ -1,0 +1,171 @@
+/* Footer */
+
+.footer {
+  padding: 4rem 0 2rem;
+  background-color: #1f002c;
+  position: relative;
+  overflow: hidden;
+  color: #e0e0e0;
+  margin-top: 160px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  margin-bottom: 12rem;
+  flex-wrap: wrap;
+}
+
+.footer-info {
+  max-width: 300px;
+}
+
+.footer-logo {
+  max-width: 200px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-logo img {
+  width: 100%;
+  height: auto;
+}
+
+.footer-contact p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: #e0e0e0;
+  font-size: 14px;
+}
+
+.footer-contact a {
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-contact a:hover {
+  opacity: 0.8;
+}
+
+.footer-contact .icon {
+  width: 16px;
+  display: inline-flex;
+  justify-content: center;
+  color: #e0e0e0;
+  
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.footer-nav-column h4 {
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.footer-nav-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav-column li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-nav-column a {
+  color: #e0e0e0;
+  font-family: Plus Jakarta Sans;
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+
+}
+
+.footer-nav-column a:hover {
+  opacity: 1;
+}
+
+/* Background logo styling - centered */
+.footer-background-logo {
+  position: absolute;
+  left: 50%;
+  top: 69%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 1; 
+  width: 80%;
+  max-width: 800px;
+  pointer-events: none;
+  padding-top: 10px;
+  filter: brightness(1.8) contrast(1.2);
+}
+
+.footer-background-logo img {
+  width: 90%;
+  height: auto;
+  image-rendering: -webkit-optimize-contrast; /* helps rendering */
+}
+
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-legal {
+  display: flex;
+  align-items: center;
+}
+
+.footer-legal p {
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+.footer-legal .heart {
+  color: #ff4d4d;
+  margin: 0 3px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 14px;
+  transition: opacity 0.3s ease;
+}
+
+.footer-links a:hover {
+  opacity: 0.8;
+}
+
+
