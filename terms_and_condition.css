@@ -409,9 +409,9 @@ color:var(--primary-light);
   position: relative;
 
   background-blend-mode: multiply;
-  width: 1533px;
-height: 825px;
-margin: 80px auto auto;
+  max-width: 1648px;
+  height: 825px;
+  margin: 80px 10px 10px;
 border-radius: 16px;
 
 
