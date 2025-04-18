@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-     <!-- Google Tag Manager -->
+          <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -10,36 +10,39 @@
   <!-- End Google Tag Manager -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Starting11</title>
+    <title>Starting11- Football Community Platform</title>
+    
     <link rel="stylesheet" href="terms_and_condition.css" />
     <link rel="stylesheet" href="modal.css" />
     <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/FAVICON.png">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"> -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/FAVICON.png">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
   </head>
 
   <body>
-       ⁠<!-- Google Tag Manager (noscript) -->
+    ⁠<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGVXXCJ7"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  
     <div id="app">
       <!-- Header Section -->
-       <!-- Header Section -->
-       <header class="header">
+      <header class="header">
         <div class="container">
           <div class="header-content">
             <div class="logo">
-              <a :href=""
+              <a :href="plugs.webAppUrl"
                 ><img
                   src="assets/logo-pri.png"
                   alt="Starting Eleven Logo"
@@ -82,14 +85,15 @@
               </ul>
               <!-- Move Auth Buttons Inside Menu for Mobile -->
               <div class="mobile-auth-buttons">
-                <a style="border-bottom: 2px solid #3c096c;" :href="plugs.webAppUrl" class="btn btn-outline auth-button">Sign up</a>
+                <a :href="plugs.webAppUrl" class="btn btn-outline auth-button">Sign up</a>
                 <a @click.prevent="openModal" class="btn btn-primary auth-button">Login</a>
               </div>
             </nav>
             <!-- Hide Auth Buttons on Small Screens -->
             <div class="auth-buttons" id="authButtons">
-              <a :href="plugs.webAppUrl" class="btn btn-outline auth-button">Sign up</a>
-              <a @click.prevent="openModal" class="btn btn-primary auth-button">Login</a>
+              <a :href="plugs.webAppUrl" v-if="!isUserLoggedIn.state"  class="btn btn-outline auth-button">Sign up</a>
+              <a @click.prevent="openModal" v-if="!isUserLoggedIn.state" class="btn btn-primary auth-button">Login</a>
+              <a @click="logout" v-if="isUserLoggedIn.state"  class="btn btn-danger logout-button">logout</a>
             </div>
           </div>
         </div>
@@ -149,7 +153,7 @@
                     Sign In <span v-if="loading">....</span>
                   </button>
                   <p>
-                    Don’t have an account? <a href="/register.html">Register</a>
+                    Don’t have an account? <a :href="plugs.webAppUrl">Register</a>
                   </p>
                 </div>
               </form>
@@ -158,125 +162,620 @@
           </section>
         </div>
       </div>
-      <!-- HERO SECTION -->
 
-      <!-- HERO SECTION -->
+      <!-- Hero Section -->
       <section class="hero">
-        <div class="hero-overlay"></div>
-        <!-- Dark overlay for text readability -->
-        <div class="hero-container">
-          <h1>Terms and Condition</h1>
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Bringing you closer <br />to the Game you Love</h1>
+            <p>
+              Live and breathe football like never before! Dive into passionate
+              fan discussions, track your favorite teams and players, and stay
+              ahead with real-time match updates with
+              <strong>Starting11</strong>. Whether you're a fan, a rising star,
+              or a scout looking for top talent—this is where football comes to
+              life.
+            </p>
+            <div class="hero-buttons">
+              <a :href="plugs.webAppUrl" class="btn btn-outline"
+                >Register your Profile/Team</a
+              >
+              <a @click.prevent="openModal" class="btn btn-primary"
+                >Join the Community <span class="arrow">→</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- <section>
+            <div class="container youtube-stream-wrapper">
+                <h2 class="section-title text-left">Join to watch the Rising Start Tournament Live with Us</h2>
+                <div class="youtube-stream"h6>
+                    <iframe 
+                    width="560" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/FMQJOMqwJMk"
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <div class="live-reaction">
+                    <a class="btn btn-pri" @click.prevent="openModal">
+                        Share your thoughts
+                    </a>
+                </div>
+            </div>
+        </section> -->
+      <!-- Partners Section -->
+      <!-- <section class="partners">
+            <div class="container">
+                <h2 class="section-title text-center">Our Trusted Partners</h2>
+                <div class="partners-logos">
+                    <img src="assets/logo1.png" alt="Trivago" class="partner-logo">
+                    <img src="assets/logo2.png" alt="Montepoint" class="partner-logo">
+                    <img src="assets/logo32.png" alt="Microsoft" class="partner-logo">
+                    <img src="assets/logo4.png" alt="Spotify" class="partner-logo">
+                </div>
+            </div>
+        </section> -->
 
+      <!-- Live Matches Section -->
+
+      <!-- About-us -->
+      <section class="About-us">
+        <div class="container">
+          <div class="about-content">
+            <div class="about-text">
+              <div class="about-us-badge">About Us</div>
+              <h1>
+                Igniting the Love and Passion for Football while Connecting
+                Talent to Opportunities
+              </h1>
+              <p>
+                Football is more than just a game—it's a passion that unites
+                fans, fuels dreams, and creates endless opportunities.
+                Starting11 is designed to bring football enthusiasts together,
+                providing a space to discuss the sport, stay updated with match
+                and player insights, and celebrate the love of the game. Whether
+                you're a player looking to get discovered, a scout searching for
+                top talent, or a fan eager to engage with the football
+                community, we bridge the gap between passion and opportunity.
+                Join us and be part of a thriving football ecosystem where
+                talent meets recognition.
+              </p>
+              <!-- <a href="#" class="read-more-btn">Read More About Us</a> -->
+            </div>
+            <div class="about-image">
+              <img src="assets/fan.jpeg" alt="Football Fans" />
+            </div>
+          </div>
         </div>
       </section>
 
+      <!-- FOOTBALL FAN -->
 
-      <div class="container">
-        <div class="Features1-content">
-          <h2>1. Information We Collect</h2>
-          <p>We collect information to provide and improve our services. This includes:</p>
-          <ul>
-            <li>Personal Information: Name, email address, phone number, profile photos, player/team details.</li>
-            <li>Usage Data: Match stats, training attendance, platform activity, and engagement history.</li>
-            <li>Technical Information: Device type, browser, IP address, and cookies for performance tracking.</li>
-          </ul>
+      <section class="football-fan">
+        <div class="fan-container">
+          <div class="fan-left">
+            <img src="assets/image-frame.png" alt="fan Image" />
+          </div>
+          <div class="fan-right">
+            <div class="for-football-fans">For Football Fans</div>
+            <h1>
+              Stay Updated on Live Matches, Team Stats, Player Insights,
+              Tournaments & Fans Gist – All on Starting11
+            </h1>
+            <p>
+              Starting11 brings you real-time match updates, in-depth team and
+              player stats, the latest tournament news, and the hottest fan
+              gist—all in one place. Whether you're tracking your favorite club,
+              analyzing player performances, staying ahead of upcoming fixtures,
+              or joining lively discussions with fellow fans, we've got you
+              covered. You are at the right place.
+            </p>
+            <div class="fan-features">
+              <div class="feature">
+                <i class="fas fa-comments"></i>
+                <p>Join discussions on your favorite teams and leagues</p>
+              </div>
+              <div class="feature">
+                <i class="fas fa-futbol"></i>
+                <p>
+                  Get Real-Time Updates on Live Matches, Player Insights, and
+                  Team Stats
+                </p>
+              </div>
+              <div class="feature">
+                <i class="fas fa-trophy"></i>
+                <p>Follow your favorite tournaments all the way</p>
+              </div>
+              <div class="feature">
+                <i class="fas fa-users"></i>
+                <p>
+                  Share your opinions and connect with football lovers worldwide
+                </p>
+              </div>
+            </div>
+            <a :href="plugs.webAppUrl" class="button" target="_blank">Join the Elite Fans Community</a>
+          </div>
         </div>
-      
-    
-    
-      </div>
+      </section>
+      <section class="player-profile">
+        <div class="player-container">
+          <!-- Left Side (Text) -->
+          <div class="player-profile-left">
+            <div class="for-players">For Players</div>
+            <h2>
+              Open new opportunities home and abroad through your player profile
+            </h2>
+            <p>
+              Your talent deserves to be seen! With your Starting11 player
+              profile, you can showcase your skills, stats, and achievements to
+              scouts, coaches, and teams worldwide.
+            </p>
 
-     <!-- Footer Section -->
-    <!-- Footer Section -->
- <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-content">
-      <div class="footer-info">
-        <div class="footer-logo">
-          <img src="assets/logo-white.png" alt="Starting Eleven Logo" />
+            <div class="features">
+              <div class="feature">
+                <i class="fas fa-user-circle"></i>
+                <p>Build your player profile with stats and achievements</p>
+              </div>
+              <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <p>Get verified and increase your chances of discovery</p>
+              </div>
+              <div class="feature">
+                <i class="fas fa-search"></i>
+                <p>Be seen by scouts, coaches, and clubs worldwide</p>
+              </div>
+            </div>
+
+            <a :href="plugs.webAppUrl" class="button">Create your Player Profile</a>
+          </div>
+
+          <!-- Right Side (Image) -->
+          <div class="player-profile-right">
+            <img src="assets/players.png" alt="Players" />
+          </div>
         </div>
-        <div class="footer-contact">
-          <!-- <p>
-            <span class="icon"
-              ><i class="fas fa-map-marker-alt"></i
-            ></span>
-            2972 Westheimer Rd, Santa Ana, Illinois 85486
-          </p> -->
-          <p>
-            <span class="icon"><i class="fas fa-envelope"></i></span>
-            <a href="contact@starting11.pro"
-              >contact@starting11.pro</a
+      </section>
+
+      <section class="bridging-gap">
+        <h2>Bridging the Gap between Talents and Opportunities</h2>
+      </section>
+      <!-- club-section -->
+      <section class="club-container">
+        <!-- Image Section -->
+        <div class="club-image-container">
+          <img src="assets/landing-fourth.jpeg" alt="Soccer Team" />
+        </div>
+
+        <!-- Text Content Section -->
+        <div class="club-section">
+          <div class="badge-club for-clubs">For Clubs</div>
+
+          <h2 class="club-heading">
+            Manage and keep track of Players Stats, Participate in Tournaments
+            and Games.
+          </h2>
+          <p class="club-description">
+            Take control of your team's journey with Starting11. Easily track
+            player stats, monitor training attendance, and analyze performance
+            in real time. Stay organized, participate in tournaments, and
+            compete in matches with a system designed to elevate your team. With
+            every game played and every stat recorded, you're building a path to
+            success.
+          </p>
+
+          <div class="club-feature">
+            <div class="icon-wrapper">
+                <i class="fas fa-users club-feature-icon"></i>
+            </div>
+            <span class="club-feature-text"
+              >Create and manage your team profile</span
             >
+          </div>
+
+          <div class="club-feature">
+            <div class="icon-wrapper">
+                <i class="fas fa-user-edit club-feature-icon"></i>
+            </div>
+            <span class="club-feature-text"
+              >Register players and showcase their stats</span
+            >
+          </div>
+
+          <div class="club-feature">
+            <div class="icon-wrapper">
+                <i class="fas fa-chart-line club-feature-icon"></i>
+            </div>
+            <span class="club-feature-text"
+              >Track match performance and team analytics</span
+            >
+          </div>
+
+          <div class="club-feature">
+            <div class="icon-wrapper">
+                <i class="fas fa-video club-feature-icon"></i>
+            </div>
+            <span class="club-feature-text"
+              >See live matches and analyze previous matches</span
+            >
+          </div>
+
+          <div class="club-feature">
+            <div class="icon-wrapper">
+                <i class="fas fa-calendar-alt club-feature-icon"></i>
+            </div>
+            <span class="club-feature-text"
+              >Track player activities and attendance</span
+            >
+          </div>
+
+          <a :href="plugs.webAppUrl" class="club-button">Create a Club Account</a>
+        </div>
+      </section>
+
+      <!-- scout-section -->
+      <section class="scout-container">
+        <!-- Text Content (Left) -->
+        <div class="scout-section">
+          <div>
+            <span class="badge for-scouts">For Scouts</span>
+            <span class="badge coming-soon">Coming Soon</span>
+          </div>
+
+          <h2 class="scout-heading">
+            Find Verified Talent & Discover the Next Big Star
+          </h2>
+          <p class="scout-description">
+            Get access to a pool of verified, high-potential players ready to
+            make an impact. Whether you're a scout, coach, or club looking for
+            the next breakout star, Starting11 provides real player stats,
+            performance insights, and detailed profiles to help you make
+            informed decisions.
           </p>
-          <p>
-            <span class="icon"><i class="fas fa-phone"></i></span>
-            <a href="tel:+2349164227854">+2349164227854</a>
-          </p>
-          <!-- <p>
-            <span class="icon"><i class="fas fa-phone"></i></span>
-            <a href="tel:+17045550127">(704) 555-0127</a>
-          </p> -->
-        </div>
-      </div>
 
-      <div class="footer-nav">
-        <div class="footer-nav-column">
-          <ul>
-            <li><a :href="plugs.webAppUrl">Home</a></li>
-            <li><a href="./about.html">About Us</a></li>
-            <li><a href="./contact.html">Contact Us</a></li>
-            <li><a href="./blog.html">Blog & News</a></li>
-            <li><a href="#">Sponsorship & Partnership</a></li>
-          </ul>
-        </div>
+          <div class="scout-feature">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-user-check scout-feature-icon"></i>
+            </div>
+            <span class="scout-feature-text"
+              >Browse player profiles with verified stats and achievements</span
+            >
+          </div>
 
-        <div class="footer-nav-column">
-          <ul>
-            <li><a :href="plugs.webAppUrl">Join the Community</a></li>
-            <li><a :href="plugs.webAppUrl">Register as a Player</a></li>
-            <li><a :href="plugs.webAppUrl">Register Your Team</a></li>
-            <li><a href="./scout.html">Scout Talent</a></li>
-            <li><a :href="plugs.webAppUrl">Live Match Updates</a></li>
-          </ul>
-        </div>
+          <div class="scout-feature">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-chart-line scout-feature-icon"></i>
+            </div>
+            <span class="scout-feature-text"
+              >Get real-time updates on player growth and match
+              performances</span
+            >
+          </div>
 
-        <div class="footer-nav-column">
-          <ul>
-            <li><a href="./help.html">Help & Support</a></li>
-            <li><a href="./contact.html">Report an Issue</a></li>
-            <li><a href="./help.html">Help Articles</a></li>
-            <li><a href="./faq.html">FAQ's</a></li>
-          </ul>
+          <div class="scout-feature">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-handshake scout-feature-icon"></i>
+            </div>
+            <span class="scout-feature-text"
+              >Connect directly with teams and players ready for the next
+              level</span
+            >
+          </div>
         </div>
 
-        <!-- <div class="footer-nav-column">
-          <ul>
-            <li><a href="#">Socials</a></li>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">X (Twitter)</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">TikTok</a></li>
-          </ul>
-        </div> -->
-      </div>
+        <!-- Image Section (Right) -->
+        <div class="image-container">
+          <img src="assets/coach.png" alt="Scout Looking for Players" />
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <!-- Testimonials Section -->
+      <!-- <section class="testimonials">
+        
+        <div class="testimonial-container">
+          <div class="testimonial-header">
+            <h1>Hear from our Community. What <br />Starting11 has to offer</h1>
+          </div>
+
+          <div class="testimonial-carousel">
+            <button
+              class="carousel-button prev-button"
+              aria-label="Previous testimonial"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+
+            <div class="carousel-container">
+              <div class="carousel-track">
+           
+                <div class="testimonial-card active">
+                  <div class="testimonial-image">
+                    <img
+                      src="assets/testimonial 1.jpeg"
+                      alt="Coach Ibrahim Adewale"
+                    />
+                    <div class="testimonial-person">
+                      <h3>Coach Ibrahim Adewale</h3>
+                      <p>Head Coach, Rising Stars FC</p>
+                    </div>
+                  </div>
+                  <div class="testimonial-content">
+                    <div class="quote-text">
+                      <p>
+                        "Starting11 has completely transformed how I manage my
+                        team. Tracking player stats, monitoring training
+                        attendance, and analyzing performance has never been
+                        easier. With real-time insights, I can make better
+                        tactical decisions and help my players improve. This
+                        platform is a game-changer for any coach looking to take
+                        their team to the next level!"
+                      </p>
+                    </div>
+                    <div class="soccer-ball-graphic"></div>
+                  </div>
+                </div>
+
+               
+                <div class="testimonial-card">
+                  <div class="testimonial-image">
+                    <img src="assets/testimonial2.jpeg" alt="Sarah Johnson" />
+                    <div class="testimonial-person">
+                      <h3>Sarah Johnson</h3>
+                      <p>Team Manager, United FC</p>
+                    </div>
+                  </div>
+                  <div class="testimonial-content">
+                    <div class="quote-text">
+                      <p>
+                        "As a team manager, Starting11 has been invaluable. The
+                        comprehensive analytics and easy-to-use interface have
+                        streamlined our entire operation. Our coaches can focus
+                        more on development and less on paperwork. I highly
+                        recommend this platform to any sports organization
+                        serious about player development."
+                      </p>
+                    </div>
+                    <div class="soccer-ball-graphic"></div>
+                  </div>
+                </div>
+
+            
+                <div class="testimonial-card">
+                  <div class="testimonial-image">
+                    <img src="assets/testimonia3.jpeg" alt="Michael Chen" />
+                    <div class="testimonial-person">
+                      <h3>Michael Chen</h3>
+                      <p>Youth Development Director, Elite Academy</p>
+                    </div>
+                  </div>
+                  <div class="testimonial-content">
+                    <div class="quote-text">
+                      <p>
+                        "Starting11 has revolutionized how we track player
+                        progress across our entire youth academy. The
+                        data-driven insights have helped us identify talent
+                        earlier and create more personalized development plans.
+                        Parents love the transparency, and coaches appreciate
+                        the time saved on administrative tasks."
+                      </p>
+                    </div>
+                    <div class="soccer-ball-graphic"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="carousel-button next-button"
+              aria-label="Next testimonial"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div class="carousel-indicators">
+            <button
+              class="indicator active"
+              data-index="0"
+              aria-label="Go to slide 1"
+            ></button>
+            <button
+              class="indicator"
+              data-index="1"
+              aria-label="Go to slide 2"
+            ></button>
+            <button
+              class="indicator"
+              data-index="2"
+              aria-label="Go to slide 3"
+            ></button>
+          </div>
+        </div>
+      </section> -->
+
+      <!-- FAQ Section -->
+      <section class="faq">
+        <div class="container faq-container">
+          <h2 class="section-title text-center">
+            We listened to your Questions<br />Here are some Answers
+          </h2>
+          <div class="faq-container">
+            <div class="faq-item">
+              <div class="faq-question">
+                <p><b>How does Starting11 helps my career as a player? </b></p>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Starting11 provides a platform to showcase your skills,
+                  connect with scouts and teams, and track your performance with
+                  verified statistics.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <p><b>How can I stay updated on live matches?</b></p>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Our platform provides real-time match updates, statistics, and
+                  notifications for your favorite teams and players.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <p><b>Can I share my own football content here?</b></p>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Yes, you can share your opinions, analysis, and content with
+                  our community of football enthusiasts.
+                </p>
+              </div>
+            </div>
+            <!-- <div class="faq-item">
+              <div class="faq-question">
+                <p>
+                  <b>Will I get notified about important football events?</b>
+                </p>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Yes, you can set up notifications for matches, player
+                  transfers, and other important football events.
+                </p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Section -->
+            <!-- Footer Section -->
+            <footer class="footer">
+              <div class="footer-container">
+                <div class="footer-content">
+                  <div class="footer-info">
+                    <div class="footer-logo">
+                      <img src="assets/logo-white.png" alt="Starting Eleven Logo" />
+                    </div>
+                    <div class="footer-contact">
+                      <!-- <p>
+                        <span class="icon"
+                          ><i class="fas fa-map-marker-alt"></i
+                        ></span>
+                        2972 Westheimer Rd, Santa Ana, Illinois 85486
+                      </p> -->
+                      <p>
+                        <span class="icon"><i class="fas fa-envelope"></i></span>
+                        <a href="contact@starting11.pro"
+                          >contact@starting11.pro</a
+                        >
+                      </p>
+                      <p>
+                        <span class="icon"><i class="fas fa-phone"></i></span>
+                        <a href="tel:+2349164227854">+2349164227854</a>
+                      </p>
+                      <!-- <p>
+                        <span class="icon"><i class="fas fa-phone"></i></span>
+                        <a href="tel:+17045550127">(704) 555-0127</a>
+                      </p> -->
+                    </div>
+                  </div>
+      
+                  <div class="footer-nav">
+                    <div class="footer-nav-column">
+                      <ul>
+                        <li><a :href="plugs.webAppUrl">Home</a></li>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./contact.html">Contact Us</a></li>
+                        <li><a href="./blog.html">Blog & News</a></li>
+                        <li><a href="#">Sponsorship & Partnership</a></li>
+                      </ul>
+                    </div>
+      
+                    <div class="footer-nav-column">
+                      <ul>
+                        <li><a :href="plugs.webAppUrl">Join the Community</a></li>
+                        <li><a :href="plugs.webAppUrl">Register as a Player</a></li>
+                        <li><a :href="plugs.webAppUrl">Register Your Team</a></li>
+                        <li><a href="./scout.html">Scout Talent</a></li>
+                        <li><a :href="plugs.webAppUrl">Live Match Updates</a></li>
+                      </ul>
+                    </div>
+      
+                    <div class="footer-nav-column">
+                      <ul>
+                        <li><a href="./help.html">Help & Support</a></li>
+                        <li><a href="./contact.html">Report an Issue</a></li>
+                        <li><a href="./help.html">Help Articles</a></li>
+                        <li><a href="./faq.html">FAQ's</a></li>
+                      </ul>
+                    </div>
+      
+                    <!-- <div class="footer-nav-column">
+                      <ul>
+                        <li><a href="#">Socials</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">X (Twitter)</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">TikTok</a></li>
+                      </ul>
+                    </div> -->
+                  </div>
+                </div>
+      
+                <!-- Large background logo - centered -->
+                <div class="footer-background-logo">
+                  <img src="assets/logo.png"alt="" aria-hidden="true" />
+                </div>
+      
+                <div class="footer-bottom">
+                  <div class="footer-legal">
+                    <a href="">Built with ❤ by Footech.io </a>
+                  </div>
+                  <div class="footer-links">
+                    <a href="#">Terms and Condition</a>
+                    <a href="#">Privacy Policy</a>
+                  </div>
+                </div>
+              </div>
+            </footer>
     </div>
-
-    <!-- Large background logo - centered -->
-    <div class="footer-background-logo">
-      <img src="assets/Logo (2).png" alt="" aria-hidden="true" />
-    </div>
-
-    <div class="footer-bottom">
-      <div class="footer-legal">
-        <a href="">Built with ❤ by Footech.io </a>
-      </div>
-      <div class="footer-links">
-        <a href="#">Terms and Condition</a>
-        <a href="#">Privacy Policy</a>
-      </div>
-    </div>
-  </div>
-</footer>
     <script src="./loadEnv.js"></script>
     <script type="importmap">
       {
@@ -330,35 +829,111 @@
             }
           });
         });
-      });
-        // dropdown
 
-        document.addEventListener("DOMContentLoaded", function () {
+        // FAQ toggle
+        document.querySelectorAll(".faq-question").forEach((question) => {
+          question.addEventListener("click", () => {
+            const faqItem = question.parentElement;
+            faqItem.classList.toggle("active");
+
+            // Update the icon
+            const icon = question.querySelector(".faq-icon");
+            if (faqItem.classList.contains("active")) {
+              icon.textContent = "−";
+            } else {
+              icon.textContent = "+";
+            }
+          });
+        });
+      });
+
+      // dropdown
+      // dropdown
+
+      document.addEventListener("DOMContentLoaded", function () {
   const dropdown = document.querySelector(".dropdown");
   const dropdownToggle = dropdown.querySelector(".dropdown-toggle");
   const dropdownMenu = dropdown.querySelector(".dropdown-menu");
 
-  // Toggle dropdown when the toggle is clicked
+  // Toggle dropdown
   dropdownToggle.addEventListener("click", function (e) {
     e.preventDefault();
-    e.stopPropagation(); // Prevent outside click from immediately closing it
+    e.stopPropagation();
     dropdownMenu.classList.toggle("dropdown-open");
   });
 
-  // Close dropdown when clicking outside
+  // Close when clicking outside
   document.addEventListener("click", function (e) {
     if (!dropdown.contains(e.target)) {
       dropdownMenu.classList.remove("dropdown-open");
     }
   });
 
-  // Close dropdown when clicking on a link inside it
+  // Close when clicking menu items
   dropdownMenu.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", function () {
+    link.addEventListener("click", () => {
       dropdownMenu.classList.remove("dropdown-open");
     });
   });
 });
+
+
+
+
+      //  JavaScript for Carousel
+    //   document.addEventListener("DOMContentLoaded", function () {
+    //             let currentIndex = 0;
+    //             const testimonials = document.querySelectorAll(".testimonial-card");
+    //             const prevButton = document.querySelector(".prev-button");
+    //             const nextButton = document.querySelector(".next-button"); //hidden temporary
+    //             const indicators = document.querySelectorAll(".indicator");
+    //             const track = document.querySelector(".carousel-track");
+    //             const carouselContainer = document.querySelector(".carousel-container");
+    //             const totalSlides = testimonials.length;
+
+    //             // Slide in effect on page load
+    //             setTimeout(() => {
+    //                 carouselContainer.classList.add("active"); // Add class to trigger slide-in
+    //             }, 200);
+
+    //             function updateTestimonial(index) {
+    //                 if (index < 0) {
+    //                     currentIndex = totalSlides - 1;
+    //                 } else if (index >= totalSlides) {
+    //                     currentIndex = 0;
+    //                 } else {
+    //                     currentIndex = index;
+    //                 }
+
+    //                 // Move slides from left to right
+    //                 track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    //                 // Update active class on indicators
+    //                 indicators.forEach((indicator, i) => {
+    //                     indicator.classList.toggle("active", i === currentIndex);
+    //                 });
+    //             }
+
+    //             function nextTestimonial() {
+    //                 updateTestimonial(currentIndex + 1);
+    //             }
+
+    //             function prevTestimonial() {
+    //                 updateTestimonial(currentIndex - 1);
+    //             }
+
+    //             // Event listeners
+    //             // nextButton.addEventListener("click", nextTestimonial);
+    //             // prevButton.addEventListener("click", prevTestimonial);
+
+    //             indicators.forEach((indicator, index) => {
+    //                 indicator.addEventListener("click", () => updateTestimonial(index));
+    //             });
+
+    //             // Initialize first slide
+    //             updateTestimonial(currentIndex);
+    //         });
+
     </script>
   </body>
 </html>
