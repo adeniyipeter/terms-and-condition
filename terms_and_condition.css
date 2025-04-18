@@ -407,8 +407,14 @@ color:var(--primary-light);
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  /* border-radius: 10px; */
+
   background-blend-mode: multiply;
+  width: 1533px;
+height: 825px;
+margin: 80px auto auto;
+border-radius: 16px;
+
+
 }
 
 .hero-content {
@@ -419,6 +425,7 @@ color:var(--primary-light);
   min-height: 80vh; 
   padding: 0px; 
   gap: 60px;
+  margin-bottom: 100px;
 }
 
 .hero-image {
@@ -841,7 +848,7 @@ letter-spacing: 0.5%;
 .bridging-gap {
   padding: 200px 0;
   text-align: center;
-  background-image: url("assets/landing-five.jpeg"); 
+  background-image: url("assets/soccer.jpeg"); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
