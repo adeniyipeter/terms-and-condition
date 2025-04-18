@@ -854,11 +854,12 @@
   const dropdown = document.querySelector(".dropdown");
   const dropdownToggle = dropdown.querySelector(".dropdown-toggle");
   const dropdownMenu = dropdown.querySelector(".dropdown-menu");
+  const navMenu = document.getElementById("navMenu");
 
   // Toggle dropdown
   dropdownToggle.addEventListener("click", function (e) {
     e.preventDefault();
-    e.stopPropagation();
+    e.stopPropagation(); // Prevent event from bubbling up
     dropdownMenu.classList.toggle("dropdown-open");
   });
 
@@ -867,12 +868,21 @@
     if (!dropdown.contains(e.target)) {
       dropdownMenu.classList.remove("dropdown-open");
     }
+    // Only close the main menu if clicking outside both menu and dropdown
+    if (!navMenu.contains(e.target) && !dropdown.contains(e.target)) {
+      navMenu.classList.remove("active");
+      document.body.style.overflow = "";
+    }
   });
 
-  // Close when clicking menu items
-  dropdownMenu.querySelectorAll("a").forEach(link => {
+  // Close when clicking menu items (excluding dropdown toggle)
+  const navLinks = document.querySelectorAll(".nav-menu a:not(.dropdown-toggle)");
+  navLinks.forEach(link => {
     link.addEventListener("click", () => {
-      dropdownMenu.classList.remove("dropdown-open");
+      if (navMenu.classList.contains("active")) {
+        navMenu.classList.remove("active");
+        document.body.style.overflow = "";
+      }
     });
   });
 });

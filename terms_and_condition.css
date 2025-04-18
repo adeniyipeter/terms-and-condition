@@ -1711,7 +1711,7 @@ input:invalid ~ button {
     /* padding-left: 60px;
     padding-right: 100px; */
   }
-  
+  .hero{ margin: 50px auto;}
   .hero-text h1 {
     font-size: 48px;
    
